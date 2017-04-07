@@ -1,7 +1,9 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('OneController', ['InfoService', function(InfoService) {
+myApp.controller('OneController', ['$scope', 'InfoService', function($scope, InfoService) {
   InfoService.getRequest();
+  //func for button to work
+  $scope.searchMovie = InfoService.searchMovie;
 }]);
 
 myApp.controller('TwoController', ['$scope', 'InfoService', function($scope, InfoService) {
@@ -13,17 +15,18 @@ myApp.factory('InfoService', ['$http', function($http) {
 
     var movie = {};
 
+    var searchMovie = function() {
+      console.log('searching...');
+    };
+
 
     return {
+        searchMovie: searchMovie,
 
         getRequest: function() {
             $http.get('/info').then(function(response) {
               console.log(response);
             });
-        },
-
-        searchMovieDB: function () {
-          console.log('searching...');
         },
 
         //get movies from OMDB database
