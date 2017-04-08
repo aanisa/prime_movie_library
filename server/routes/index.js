@@ -3,13 +3,10 @@ var router = express.Router();
 var path = require('path');
 
 
-router.get('/info', function(req,res){
-    res.send('Get ready, Get set, Movie!');
-});
-
 
 // BASE ROUTE
 router.get('/', function(req,res){
+  console.log('index');
     res.sendFile(path.resolve('server/public/views/index.html'));
 });
 

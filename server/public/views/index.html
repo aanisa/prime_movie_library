@@ -24,19 +24,13 @@
 
 
   <div class="row">
-
     <div class="col-md-12" ng-controller="OneController" style="text-align:center;">
       <input type="text" ng-model="movie.title" placeholder="Title">
       <!-- <input type="text" ng-model="movie.year" placeholder="Year">
       <input type="text" ng-model="movie.cast" placeholder="Cast">
       <input type="text" ng-model="movie.genre" placeholder="Genre"> -->
       <button type="submit" ng-click="searchMovie()" class="btn glyphicon glyphicon-search" aria-hidden="true"></button>
-
-
     </div>
-
-
-
   </div>
 
 
@@ -51,8 +45,6 @@
         <p>{{searchResult.response.Plot}}</p>
         <button type="submit" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
       </div>
-
-
     </div>
   </div>
 

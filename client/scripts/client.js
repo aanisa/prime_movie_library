@@ -1,16 +1,16 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('OneController', ['$scope', 'InfoService', function($scope, InfoService) {
-  // InfoService.getRequest();
-
   $scope.searchMovie = InfoService.searchMovie;
   $scope.movie = InfoService.movie;
 
 }]);
 
-myApp.controller('TwoController', ['$scope', 'InfoService', function($scope, InfoService) {
+myApp.controller('TwoController', ['$scope', '$http', 'InfoService', function($scope, $http, InfoService) {
 $scope.searchResult = InfoService.searchResult;
-console.log($scope.searchResult);
+
+InfoService.getRequest();
+
 
 }]);
 
@@ -31,18 +31,18 @@ myApp.factory('InfoService', ['$http', function($http) {
     return {
         movie: movie,
         searchResult: searchResult,
-        // getRequest: function() {
-        //     $http.get('/info').then(function(response) {
-        //       console.log(response);
-        //     });
-        // },
+
+        getRequest: function() {
+            $http.get('/movie').then(function(response) {
+              console.log(response);
+            });
+        },
 
         searchMovie: function() {
             searchMovie = movie.title;
             $http.get('http://www.omdbapi.com/?t=' + searchMovie +
                       '&y=&plot=full&r=json').then(function(response) {
               searchResult.response = response.data;
-              // console.log(searchResult.response);
             });
         },
 
