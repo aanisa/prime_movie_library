@@ -43,8 +43,11 @@
         <p>{{searchResult.response.Directors}}</p>
         <p>{{searchResult.response.Runtime}}</p>
         <p>{{searchResult.response.Plot}}</p>
-        <button type="submit" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
+        <button type="submit" ng-click="saveFavMovie()"class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
       </div>
+    </div>
+    <div class="col-md-12">
+        <h2>Favorites</h2>
     </div>
   </div>
 

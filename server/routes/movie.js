@@ -11,7 +11,7 @@ var MovieSchema = mongoose.Schema({
   plot: String
 });
 
-var Movie = mongoose.model('movie', MovieSchema, 'movies');
+var Movie = mongoose.model('Movie', MovieSchema, 'movies');
 
 
 router.get('/', function(req, res) {
@@ -26,6 +26,15 @@ router.get('/', function(req, res) {
 
 
 router.post('/', function(req, res) {
+  var movie = new Movie ({
+    title: req.body.title,
+    year: req.body.year,
+    actors: req.body.actors,
+    directors: req.body.directors,
+    runtime: req.body.runtime,
+    plot: req.body.plot
+  });
+  res.send(req.body);
 });
 
 router.delete('/', function(req, res) {
