@@ -16,28 +16,44 @@
 <body>
 
     <div class="row">
-        <div class="col-md-12" style="text-align:center;">
-            <h1>Weekend Challegen 5 - OMDB API</h1>
+        <div class="col-md-12" style="text-align:center; padding: 20px;">
+            <h1>Movie Search and Save</h1>
         </div>
     </div>
 
 
-    <div ng-controller="OneController">
-      <input type="text" placeholder="Title">
-      <input type="text" placeholder="Release Date">
-      <input type="text" placeholder="Cast">
-      <input type="text" placeholder="Genre">
+  <div class="row">
+
+    <div class="col-md-12" ng-controller="OneController" style="text-align:center;">
+      <input type="text" ng-model="movie.title" placeholder="Title">
+      <!-- <input type="text" ng-model="movie.year" placeholder="Year">
+      <input type="text" ng-model="movie.cast" placeholder="Cast">
+      <input type="text" ng-model="movie.genre" placeholder="Genre"> -->
       <button type="submit" ng-click="searchMovie()" class="btn glyphicon glyphicon-search" aria-hidden="true"></button>
+
+
     </div>
 
 
-    <div ng-controller="TwoController">
 
-    <button type="submit" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12" ng-controller="TwoController">
+      <div class="showMovies">
+        <p>Search Results Here <button type="submit" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
+        </p>
+
+      </div>
+
+
+    </div>
+  </div>
 
 
     <!-- display: title, release year, cast, plot, runtime -->
-    </div>
+
 
 
 </body>
