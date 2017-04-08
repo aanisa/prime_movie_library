@@ -4,7 +4,7 @@ var path = require('path');
 
 
 router.get('/info', function(req,res){
-    res.send('Get ready, get set, Movie!');
+    res.send('Get ready, Get set, Movie!');
 });
 
 
