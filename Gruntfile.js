@@ -8,6 +8,12 @@ module.exports = function(grunt){
       }
     },
     copy: {
+      js: {
+        expand: true,
+        cwd: 'client/scripts/',
+        src: 'client.js',
+        dest: 'server/public/scripts'
+      },
       html: {
         expand: true,
         cwd: 'client/views',
