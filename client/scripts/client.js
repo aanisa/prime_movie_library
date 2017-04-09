@@ -51,6 +51,7 @@ myApp.factory('InfoService', ['$http', function($http) {
           //store favorite movies in favMovies array
           favMovies.push(searchResult.response);
           console.log(favMovies);
+          
           // $http.post('/movie', searchResult.response).then(function(response) {
           //   console.log(searchResult.response);
           //   console.log('saved to db:', response);
