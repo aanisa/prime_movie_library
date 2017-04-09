@@ -44,7 +44,9 @@
     </div>
     <div class="col-md-12">
         <h2>Favorites</h2>
-
+        <div ng-repeat="movies in favorites">
+          <p>{{movies.Title}}</p>
+        </div>
     </div>
   </div>
 

@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 
 var MovieSchema = mongoose.Schema({
   title: String,
-  year: Number,
+  year: String,
   actors: String,
-  runtime: Number,
+  runtime: String,
   plot: String
 });
 
