@@ -9,7 +9,9 @@ myApp.controller('OneController', ['$scope', 'InfoService', function($scope, Inf
 myApp.controller('TwoController', ['$scope', '$http', 'InfoService', function($scope, $http, InfoService) {
 $scope.searchResult = InfoService.searchResult;
 $scope.saveFavMovie = InfoService.saveMovie;
+$scope.favMovies = InfoService.favMovies;
 InfoService.getRequest();
+
 
 
 }]);
@@ -20,28 +22,19 @@ InfoService.getRequest();
 myApp.factory('InfoService', ['$http', function($http) {
     var movie = {
       title: ''
-      // year: '',
-      // cast: '',
-      // genre: '',
     };
 
     var searchResult = {};
+    var favMovies = [];
 
 
     return {
         movie: movie,
         searchResult: searchResult,
-        saveMovie: function() {
-          console.log('add to favs');
-          $http.post('/movie').then(function(response) {
-            console.log('send fav to db');
-            console.log('from db:', response);
-          });
-        },
 
         getRequest: function() {
             $http.get('/movie').then(function(response) {
-              console.log('from db', response);
+              console.log('In db',  response);
             });
         },
 
@@ -50,8 +43,19 @@ myApp.factory('InfoService', ['$http', function($http) {
             $http.get('http://www.omdbapi.com/?t=' + searchMovie +
                       '&y=&plot=full&r=json').then(function(response) {
               searchResult.response = response.data;
+              movie.title = '';
             });
         },
+
+        saveMovie: function() {
+          //store favorite movies in favMovies array
+          favMovies.push(searchResult.response);
+          console.log(favMovies);
+          // $http.post('/movie', searchResult.response).then(function(response) {
+          //   console.log(searchResult.response);
+          //   console.log('saved to db:', response);
+          // });
+        }
 
     };
 

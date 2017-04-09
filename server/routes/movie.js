@@ -4,37 +4,43 @@ var mongoose = require('mongoose');
 
 var MovieSchema = mongoose.Schema({
   title: String,
-  year: String,
+  year: Number,
   actors: String,
-  directors: String,
-  runtime: String,
+  runtime: Number,
   plot: String
 });
 
-var Movie = mongoose.model('Movie', MovieSchema, 'movies');
+var Movies = mongoose.model('movies', MovieSchema);
 
 
 router.get('/', function(req, res) {
-  Movie.find({}, function(err, allTheMovies) {
+  Movies.find({}, function(err, allTheMovies) {
     if (err) {
       console.log('Mongo Error: ' + err);
       res.sendStatus(500);
     }
+    console.log(allTheMovies);
     res.send(allTheMovies);
   });
 });
 
 
 router.post('/', function(req, res) {
-  var movie = new Movie ({
+  var movie = new Movies ({
     title: req.body.title,
     year: req.body.year,
     actors: req.body.actors,
-    directors: req.body.directors,
     runtime: req.body.runtime,
     plot: req.body.plot
   });
-  res.send(req.body);
+
+  movie.save(function(err, savedMovie) {
+        if (err) {
+            console.log('Mongo Error:' + err);
+            res.sendStatus(500);
+        }
+        res.send(savedMovie);
+    });
 });
 
 router.delete('/', function(req, res) {
