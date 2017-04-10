@@ -51,12 +51,12 @@
             <div class="col-md-6" ng-controller="OutputController">
                 <div>
                     <div>
-                      <h2>{{searchResult.response.Title}}</h2>
-                      <button type="button" ng-click="saveFavMovie()" class="btn-default btn glyphicon glyphicon-heart" aria-hidden="true" style="position:absolute; right:0; color:red;"></button>
-                    </div>
+                    <h2>{{searchResult.response.Title}}</h2>
                     <p>{{searchResult.response.Year}} {{searchResult.response.Runtime}}</p>
                     <p>{{searchResult.response.Actors}}</p>
                     <p>{{searchResult.response.Plot}}</p>
+                    <button type="button" ng-click="saveFavMovie()" class="btn-default btn glyphicon glyphicon-heart" aria-hidden="true" style="position:absolute; right:0; color:red;"></button>
+                  </div>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                   <h2>{{movies.title}} </h2>
                   <button type="button" ng-click="deleteMovie()" class="btn-default btn glyphicon glyphicon-trash" aria-hidden="true" style="position:absolute; right:0; color:black"></button>
                 </div>
-                  <p>{{movies.year}} - {{movies.runtime}}</p>
+                  <p>{{movies.year}} {{movies.runtime}}</p>
                   <p style="color:grey;">{{movies.actors}}</p>
                   <p>{{movies.plot}}</p>
               </div>
@@ -79,50 +79,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-    <!-- <div class="row">
-        <div class="col-md-12" ng-controller="SearchController" style="text-align:center; background-color:#dbdbdb ">
-            <input type="text" ng-model="movie.title" placeholder="Title">
-            <button type="submit" ng-click="searchMovie()" class="btn glyphicon glyphicon-search" aria-hidden="true"></button>
-        </div>
-    </div> -->
-
-<!--
-    <div class="row" ng-controller="OutputController">
-        <div class="col-md-12">
-            <div class="showMovies" ng-controller="OutputController" >
-                <p>{{searchResult.response.Title}}</p>
-                <p>{{searchResult.response.Year}}</p>
-                <p>{{searchResult.response.Actors}}</p>
-                <p>{{searchResult.response.Runtime}}</p>
-                <p>{{searchResult.response.Plot}}</p>
-                <button type="button" ng-click="saveFavMovie()" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
-            </div>
-        </div>
-    </div> -->
-<!--
-    <div class="row" ng-controller="FavoritesController">
-
-        <div class="col-md-12">
-            <h2>Favorites</h2>
-
-            <div ng-repeat="movies in favorites.favMovies">
-                <p>{{movies.title}}</p>
-                <p>{{movies.year}}</p>
-                <p>{{movies.actors}}</p>
-                <p>{{movies.runtime}}</p>
-                <p>{{movies.plot}}</p>
-                <button type="button" ng-click="deleteMovie()" class="btn glyphicon glyphicon-trash" aria-hidden="true"></button>
-            </div>
-
-        </div>
-    </div> -->
 
 
 

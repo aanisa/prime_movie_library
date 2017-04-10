@@ -26,13 +26,14 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   var movie = new Movies ({
-    title: req.body.title,
-    year: req.body.year,
-    actors: req.body.actors,
-    runtime: req.body.runtime,
-    plot: req.body.plot
+    title: req.body.Title,
+    year: req.body.Year,
+    actors: req.body.Actors,
+    runtime: req.body.Runtime,
+    plot: req.body.Plot
   });
   console.log(movie);
+
   movie.save(function(err, savedMovie) {
         if (err) {
             console.log('Mongo Error:' + err);

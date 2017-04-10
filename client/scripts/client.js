@@ -9,6 +9,7 @@ myApp.controller('SearchController', ['$scope', 'InfoService', function($scope, 
 myApp.controller('OutputController', ['$scope', 'InfoService', function($scope, InfoService) {
     $scope.searchResult = InfoService.searchResult;
     $scope.saveFavMovie = InfoService.saveMovie;
+    console.log(InfoService.favorites.favMovies);
 
 }]);
 
@@ -46,8 +47,8 @@ myApp.factory('InfoService', ['$http', function($http) {
                 searchResult.response = response.data;
 
                 var newFav = angular.copy(response.data);
-                favMovies = newFav;
-                favorites.favMovies = favMovies;
+                favMovies = newFav;                 //cope the response data and store in favMovies array
+                favorites.favMovies = favMovies;    //save the favMovies array inside an object
 
                 movie.title = '';
             });
@@ -59,18 +60,10 @@ myApp.factory('InfoService', ['$http', function($http) {
         },
         saveMovie: function() {
             //store movie info into an object and send to MongoDB via server
-            console.log(favMovies);
-            for (var i = 0; i < favMovies.length; i++) {
-                storeMovie = {
-                    title: favMovies[i].Title,
-                    year: favMovies[i].Year,
-                    actors: favMovies[i].Actors,
-                    runtime: favMovies[i].Runtime,
-                    plot: favMovies[i].Plot,
-                };
-            } console.log(storeMovie);
-            $http.post('/movie', storeMovie).then(function(response) {
+            $http.post('/movie', favMovies).then(function(response) {
                 console.log(response);
+                var savedMovieId = response.data._id;
+                console.log(savedMovieId);
             });
         },
         deleteMovie: function(index) {
