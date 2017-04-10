@@ -16,54 +16,117 @@
 
 <body>
 
+
+
     <div class="row">
-        <div class="col-md-12" style="text-align:center; padding: 20px; background-color: #303865; color: white;">
-            <h1>Movie Search</h1>
+        <div class="col-md-12" style="text-align:center; padding: 20px; background-color: #39393e ; color: white;">
+            <h1>Movie Library</h1>
         </div>
     </div>
 
 
-  <div class="row">
-    <div class="col-md-12" ng-controller="SearchController" style="text-align:center; background-color:#dbdbdb ">
-      <input type="text" ng-model="movie.title" placeholder="Title">
-      <button type="submit" ng-click="searchMovie()" class="btn glyphicon glyphicon-search" aria-hidden="true"></button>
+    <div class="row">
+        <div>
+            <div class="col-md-6" ng-controller="SearchController" style="background-color: #e1e3e1; padding: 16px; text-align:center;">
+              <form class="form-inline" action="index.html" method="post">
+                <div> Search Movie <input type="text" ng-model="movie.title" class="form-control"  placeholder="Title">
+                <button type="submit" ng-click="searchMovie()" class="btn btn-primary glyphicon glyphicon-search" aria-hidden="true"></button> </div>
+              </form>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="col-md-6" style="background-color: #2d5c99; padding: 5px; text-align:center;">
+                <div>
+                    <h3 style="color: #f1f1f1">Favorites</h3>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+<!-- - -->
+    <div class="row">
+        <div>
+            <div class="col-md-6" ng-controller="OutputController">
+                <div>
+                    <div >
+                      <h2>{{searchResult.response.Title}}</h2>
+                      <button type="button" ng-click="saveFavMovie()" class="btn-default btn glyphicon glyphicon-heart" aria-hidden="true" style="position:absolute; right:0; color:red;"></button>
+                    </div>
+                    <p>{{searchResult.response.Year}} - {{searchResult.response.Runtime}}</p>
+                    <p>{{searchResult.response.Actors}}</p>
+                    <p>{{searchResult.response.Plot}}</p>
+                </div>
+            </div>
 
 
-  <div class="row" ng-controller="OutputController">
-    <div class="col-md-12">
-      <div class="showMovies">
-        <p>{{searchResult.response.Title}}</p>
-        <p>{{searchResult.response.Year}}</p>
-        <p>{{searchResult.response.Actors}}</p>
-        <p>{{searchResult.response.Runtime}}</p>
-        <p>{{searchResult.response.Plot}}</p>
-        <button type="button" ng-click="saveFavMovie()" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
-      </div>
+
+        </div>
+
+        <div>
+            <div class="col-md-6" ng-controller="FavoritesController">
+              <div ng-repeat="movies in favorites.favMovies">
+                <div>
+                  <h2>{{movies.title}} </h2>
+                  <button type="button" ng-click="deleteMovie()" class="btn-default btn glyphicon glyphicon-trash" aria-hidden="true" style="position:absolute; right:0; color:black"></button>
+                </div>
+                  <p>{{movies.year}} - {{movies.runtime}}</p>
+                  <p>{{movies.actors}}</p>
+                  <p>{{movies.plot}}</p>
+              </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-<div class="row" ng-controller="FavoritesController">
-
-  <div class="col-md-12" >
-  <h2>Favorites</h2>
-
-  <div ng-repeat="movies in favorites.favMovies">
-    <p>{{movies.title}}</p>
-    <p>{{movies.year}}</p>
-    <p>{{movies.actors}}</p>
-    <p>{{movies.runtime}}</p>
-    <p>{{movies.plot}}</p>
-    <button type="button" ng-click="deleteMovie()" class="btn glyphicon glyphicon-trash" aria-hidden="true"></button>
-  </div>
-
-  </div>
-</div>
 
 
 
 
+
+
+
+
+    <!-- <div class="row">
+        <div class="col-md-12" ng-controller="SearchController" style="text-align:center; background-color:#dbdbdb ">
+            <input type="text" ng-model="movie.title" placeholder="Title">
+            <button type="submit" ng-click="searchMovie()" class="btn glyphicon glyphicon-search" aria-hidden="true"></button>
+        </div>
+    </div> -->
+
+<!--
+    <div class="row" ng-controller="OutputController">
+        <div class="col-md-12">
+            <div class="showMovies" ng-controller="OutputController" >
+                <p>{{searchResult.response.Title}}</p>
+                <p>{{searchResult.response.Year}}</p>
+                <p>{{searchResult.response.Actors}}</p>
+                <p>{{searchResult.response.Runtime}}</p>
+                <p>{{searchResult.response.Plot}}</p>
+                <button type="button" ng-click="saveFavMovie()" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
+            </div>
+        </div>
+    </div> -->
+<!--
+    <div class="row" ng-controller="FavoritesController">
+
+        <div class="col-md-12">
+            <h2>Favorites</h2>
+
+            <div ng-repeat="movies in favorites.favMovies">
+                <p>{{movies.title}}</p>
+                <p>{{movies.year}}</p>
+                <p>{{movies.actors}}</p>
+                <p>{{movies.runtime}}</p>
+                <p>{{movies.plot}}</p>
+                <button type="button" ng-click="deleteMovie()" class="btn glyphicon glyphicon-trash" aria-hidden="true"></button>
+            </div>
+
+        </div>
+    </div> -->
+
+
+
+    </div>
 </body>
 
 </html>

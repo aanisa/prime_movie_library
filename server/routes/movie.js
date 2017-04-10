@@ -19,7 +19,6 @@ router.get('/', function(req, res) {
       console.log('Mongo Error: ' + err);
       res.sendStatus(500);
     }
-    console.log(allTheMovies);
     res.send(allTheMovies);
   });
 });
@@ -43,6 +42,17 @@ router.post('/', function(req, res) {
 });
 
 router.delete('/', function(req, res) {
+  var id = req.params.id;
+  console.log(id);
+  console.log(req.params);
+
+  // Movies.findByIdAndRemove(id, function(err, deletedFav){
+  //   if (err) {
+  //     console.log(err);
+  //     res.sendStatus(500);
+  //   }
+  //   res.send('deleted: ', deletedFav);
+  // });
 });
 
 

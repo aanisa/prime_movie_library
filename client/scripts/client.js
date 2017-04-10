@@ -11,9 +11,9 @@ myApp.controller('OutputController', ['$scope', 'InfoService', function($scope, 
 
 }]);
 
-myApp.controller('FavoritesController', ['$scope','InfoService', function($scope, InfoService) {
+myApp.controller('FavoritesController', ['$scope', 'InfoService', function($scope, InfoService) {
     $scope.favorites = InfoService.favorites;
-    $scope.deleteMovie = InfoService.deleteMovie
+    $scope.deleteMovie = InfoService.deleteMovie;
     InfoService.getRequest();
 
 }]);
@@ -30,17 +30,20 @@ myApp.factory('InfoService', ['$http', function($http) {
     var favorites = {};
     var storeMovie = {};
 
+
     return {
         movie: movie,
         searchResult: searchResult,
         favorites: favorites,
         favMovies: favMovies,
         storeMovie: storeMovie,
+
         searchMovie: function() {
             searchMovie = movie.title;
             $http.get('http://www.omdbapi.com/?t=' + searchMovie +
                 '&y=&plot=full&r=json').then(function(response) {
                 searchResult.response = response.data;
+                console.log(response.data);
                 movie.title = '';
             });
         },
@@ -59,18 +62,28 @@ myApp.factory('InfoService', ['$http', function($http) {
                     year: favMovies[i].Year,
                     actors: favMovies[i].Actors,
                     runtime: favMovies[i].Runtime,
-                    plot: favMovies[i].Plot
+                    plot: favMovies[i].Plot,
                 };
             }
             $http.post('/movie', storeMovie).then(function(response) {
                 console.log(response);
             });
         },
-        deleteMovie: function() {
-          console.log('deleting movie');
+        deleteMovie: function(index) {
+              //how to access id from obj??
+            //     console.log(favMovies._id); //?
+            //     movieToDelete = favMovies[index]._id;
+            //     console.log(movieToDelete);
+            //
+            // $http.delete('/movie/' + movieToDelete).then(function(response) {
+            //     console.log(response);
+            // });
         }
 
-    };
 
+
+
+
+    };
 
 }]);
