@@ -17,21 +17,21 @@
 <body>
 
     <div class="row">
-        <div class="col-md-12" style="text-align:center; padding: 20px;">
-            <h1>Movie Search and Save</h1>
+        <div class="col-md-12" style="text-align:center; padding: 20px; background-color: #303865; color: white;">
+            <h1>Movie Search</h1>
         </div>
     </div>
 
 
   <div class="row">
-    <div class="col-md-12" ng-controller="OneController" style="text-align:center;">
+    <div class="col-md-12" ng-controller="SearchController" style="text-align:center; background-color:#dbdbdb ">
       <input type="text" ng-model="movie.title" placeholder="Title">
       <button type="submit" ng-click="searchMovie()" class="btn glyphicon glyphicon-search" aria-hidden="true"></button>
     </div>
   </div>
 
 
-  <div class="row" ng-controller="TwoController">
+  <div class="row" ng-controller="OutputController">
     <div class="col-md-12">
       <div class="showMovies">
         <p>{{searchResult.response.Title}}</p>
@@ -42,16 +42,25 @@
         <button type="button" ng-click="saveFavMovie()" class="btn glyphicon glyphicon-heart" aria-hidden="true"></button>
       </div>
     </div>
-    <div class="col-md-12">
-        <h2>Favorites</h2>
-        <div ng-repeat="movies in favorites">
-          <p>{{movies.Title}}</p>
-        </div>
-    </div>
   </div>
 
+<div class="row" ng-controller="FavoritesController">
 
-    <!-- display: title, release year, cast, plot, runtime -->
+  <div class="col-md-12" >
+  <h2>Favorites</h2>
+
+  <div ng-repeat="movies in favorites.favMovies">
+    <p>{{movies.title}}</p>
+    <p>{{movies.year}}</p>
+    <p>{{movies.actors}}</p>
+    <p>{{movies.runtime}}</p>
+    <p>{{movies.plot}}</p>
+    <button type="button" ng-click="deleteMovie()" class="btn glyphicon glyphicon-trash" aria-hidden="true"></button>
+  </div>
+
+  </div>
+</div>
+
 
 
 
