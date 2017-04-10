@@ -9,14 +9,16 @@ myApp.controller('SearchController', ['$scope', 'InfoService', function($scope, 
 myApp.controller('OutputController', ['$scope', 'InfoService', function($scope, InfoService) {
     $scope.searchResult = InfoService.searchResult;
     $scope.saveFavMovie = InfoService.saveMovie;
-    console.log(InfoService.favorites.favMovies);
 
 }]);
 
 myApp.controller('FavoritesController', ['$scope', 'InfoService', function($scope, InfoService) {
     $scope.favorites = InfoService.favorites;
     $scope.deleteMovie = InfoService.deleteMovie;
-    // InfoService.getRequest();
+
+    console.log(InfoService.favorites);
+
+    InfoService.getRequest();
 
 }]);
 
@@ -28,44 +30,48 @@ myApp.factory('InfoService', ['$http', function($http) {
         title: ''
     };
     var searchResult = {};
-    var favMovies = [];
+    var storedMovie = [];
     var favorites = {};
-    var storeMovie = {};
-
+    var favMovies = [];
+    var savedMovieId = '';
 
     return {
         movie: movie,
         searchResult: searchResult,
         favorites: favorites,
+        storedMovie: storedMovie,
         favMovies: favMovies,
-        storeMovie: storeMovie,
 
         searchMovie: function() {
             searchMovie = movie.title;
             $http.get('http://www.omdbapi.com/?t=' + searchMovie +
                 '&y=&plot=full&r=json').then(function(response) {
                 searchResult.response = response.data;
-
-                var newFav = angular.copy(response.data);
-                favMovies = newFav;                 //cope the response data and store in favMovies array
-                favorites.favMovies = favMovies;    //save the favMovies array inside an object
-
+                //store OMDB response into an array
+                storedMovie = angular.copy(response.data);
+                //empty title search input field
                 movie.title = '';
             });
         },
         getRequest: function() {
             $http.get('/movie').then(function(response) {
-              console.log(response);
+              console.log('In DB: ', response);
+              //save response in favorites object - to access via $scope and display in DOM
+              favMovies = angular.copy(response.data);
+              favorites.favMovie = favMovies;
             });
         },
+
         saveMovie: function() {
-            //store movie info into an object and send to MongoDB via server
-            $http.post('/movie', favMovies).then(function(response) {
-                console.log(response);
+            //send storedMovies array to MongoDB via server
+            $http.post('/movie', storedMovie).then(function(response) {
+              //log all the movies that's saved to the DB
                 var savedMovieId = response.data._id;
                 console.log(savedMovieId);
             });
         },
+
+
         deleteMovie: function(index) {
               //how to access id from obj??
             //     console.log(favMovies._id); //?
