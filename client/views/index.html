@@ -28,9 +28,9 @@
     <div class="row">
         <div>
             <div class="col-md-6" ng-controller="SearchController" style="background-color: #e1e3e1; padding: 16px; text-align:center;">
-              <form class="form-inline" action="index.html" method="post">
+              <form class="form-inline" ng-submit="searchMovie()" method="post">
                 <div> Search Movie <input type="text" ng-model="movie.title" class="form-control"  placeholder="Title">
-                <button type="submit" ng-click="searchMovie()" class="btn btn-primary glyphicon glyphicon-search" aria-hidden="true"></button> </div>
+                <button type="submit" class="btn btn-primary glyphicon glyphicon-search" aria-hidden="true"></button> </div>
               </form>
             </div>
 
@@ -50,11 +50,11 @@
         <div>
             <div class="col-md-6" ng-controller="OutputController">
                 <div>
-                    <div >
+                    <div>
                       <h2>{{searchResult.response.Title}}</h2>
                       <button type="button" ng-click="saveFavMovie()" class="btn-default btn glyphicon glyphicon-heart" aria-hidden="true" style="position:absolute; right:0; color:red;"></button>
                     </div>
-                    <p>{{searchResult.response.Year}} - {{searchResult.response.Runtime}}</p>
+                    <p>{{searchResult.response.Year}} {{searchResult.response.Runtime}}</p>
                     <p>{{searchResult.response.Actors}}</p>
                     <p>{{searchResult.response.Plot}}</p>
                 </div>
@@ -72,7 +72,7 @@
                   <button type="button" ng-click="deleteMovie()" class="btn-default btn glyphicon glyphicon-trash" aria-hidden="true" style="position:absolute; right:0; color:black"></button>
                 </div>
                   <p>{{movies.year}} - {{movies.runtime}}</p>
-                  <p>{{movies.actors}}</p>
+                  <p style="color:grey;">{{movies.actors}}</p>
                   <p>{{movies.plot}}</p>
               </div>
             </div>

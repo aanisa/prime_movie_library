@@ -3,6 +3,7 @@ var myApp = angular.module('myApp', []);
 myApp.controller('SearchController', ['$scope', 'InfoService', function($scope, InfoService) {
     $scope.searchMovie = InfoService.searchMovie;
     $scope.movie = InfoService.movie;
+
 }]);
 
 myApp.controller('OutputController', ['$scope', 'InfoService', function($scope, InfoService) {
@@ -14,7 +15,7 @@ myApp.controller('OutputController', ['$scope', 'InfoService', function($scope, 
 myApp.controller('FavoritesController', ['$scope', 'InfoService', function($scope, InfoService) {
     $scope.favorites = InfoService.favorites;
     $scope.deleteMovie = InfoService.deleteMovie;
-    InfoService.getRequest();
+    // InfoService.getRequest();
 
 }]);
 
@@ -43,19 +44,22 @@ myApp.factory('InfoService', ['$http', function($http) {
             $http.get('http://www.omdbapi.com/?t=' + searchMovie +
                 '&y=&plot=full&r=json').then(function(response) {
                 searchResult.response = response.data;
-                console.log(response.data);
+
+                var newFav = angular.copy(response.data);
+                favMovies = newFav;
+                favorites.favMovies = favMovies;
+
                 movie.title = '';
             });
         },
         getRequest: function() {
             $http.get('/movie').then(function(response) {
-                var newFav = angular.copy(response.data);
-                favMovies = response.data;
-                favorites.favMovies = favMovies;
+              console.log(response);
             });
         },
         saveMovie: function() {
             //store movie info into an object and send to MongoDB via server
+            console.log(favMovies);
             for (var i = 0; i < favMovies.length; i++) {
                 storeMovie = {
                     title: favMovies[i].Title,
@@ -64,7 +68,7 @@ myApp.factory('InfoService', ['$http', function($http) {
                     runtime: favMovies[i].Runtime,
                     plot: favMovies[i].Plot,
                 };
-            }
+            } console.log(storeMovie);
             $http.post('/movie', storeMovie).then(function(response) {
                 console.log(response);
             });

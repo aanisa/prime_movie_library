@@ -32,6 +32,7 @@ router.post('/', function(req, res) {
     runtime: req.body.runtime,
     plot: req.body.plot
   });
+  console.log(movie);
   movie.save(function(err, savedMovie) {
         if (err) {
             console.log('Mongo Error:' + err);
