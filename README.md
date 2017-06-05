@@ -1,4 +1,4 @@
-# Prime Digital Academy
+# Prime Digital Academy - Code Challenge
 
 ## Goal
 Use Angular and the OMDB API to build an application that can search movies, and then a user can store their favorites!
@@ -27,5 +27,9 @@ Add the ability to remove a movie from the Mongo Database, and ensure that the f
 
 ## Master Mode
 Host the application on Heroku and mLabs. No need to do a data dump of an existing database.
+
+
+
+
 
 *** OMDB requires a paid subscription as off May 2017. App currently not in service ***
