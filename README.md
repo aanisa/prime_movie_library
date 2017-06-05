@@ -32,4 +32,4 @@ Host the application on Heroku and mLabs. No need to do a data dump of an existi
 
 
 
-*** OMDB requires a paid subscription as off May 2017. App currently not in service ***
+### *** OMDB requires a paid subscription as off May 2017. App currently not in service ***
